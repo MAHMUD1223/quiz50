@@ -1,0 +1,83 @@
+{% extends '_layout.html' %}
+{% block head %}
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .question {
+            font-size: 2rem;
+        }
+        .container input[type="submit"] {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: var(--bs-success);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            gap:10px;
+            padding: 1rem;
+        }
+        .option {
+            font-size: 1.5ren;
+            text-align: left;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+{% block title %}Quiz-101/{{ question.id }}{% endblock %}
+{% block body %}
+    <h1 align="center">Quiz Question</h1>
+    <form action="{{ url_for('quiz_101') }}" method="post">
+        <div class="container">
+            <div class="question">{{ question.question }}</div>
+            <input type="submit" value="Submit">
+        </div>
+        <div class="options">
+            <div class="option" onclick="checkthis('option1')">
+                <input type="radio" name="option" id="option1" value="{{ question.opt3 }}">
+                {{ question.opt3 }}
+            </div>
+            <div class="option" onclick="checkthis('option2')">
+                <input type="radio" name="option" id="option2" value="{{ question.opt2 }}">
+                {{ question.opt2 }}
+            </div>
+            <div class="option" onclick="checkthis('option3')">
+                <input type="radio" name="option" id="option3" value="{{ question.opt4 }}">
+                {{ question.opt4 }}
+            </div>
+            <div class="option" onclick="checkthis('option4')">
+                <input type="radio" name="option" id="option4" value="{{ question.opt1 }}">
+                {{ question.opt1 }}
+            </div>
+        </div>
+        <p style="padding:1rem;">
+            Credits : {{ question.credit }} <br>
+            Likes: {{ question.upvote }} <br>
+            Dislikes: {{ question.downvote }}
+        </p>
+        <div class="vote" style="padding: 1rem;">
+            <div onclick="checkthis('vote1')">
+                <input id="vote1" type="radio" name="vote" value="upvote"> Liked it 👍 <br>
+            </div>
+            <div onclick="checkthis('vote2')">
+                <input id="vote2" type="radio" name="vote" value="downvote"> Something is wrong with this quiz 👎
+            </div>
+        </div>
+        <a href="{{ url_for('create_quiz') }}">Create a Quiz?</a>
+    </form>
+    <script>
+        function checkthis(id) {
+            $(`#${id}`).prop('checked', true);
+        }
+    </script>
+{% endblock %}

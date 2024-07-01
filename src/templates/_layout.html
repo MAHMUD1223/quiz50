@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta name="viewport" content="width=1024">
+    <meta name="theme-color" content="#000">
+    <!-- <link rel="canonical" href="https://">
+    <meta property="og:url" content="https://"> -->
+    <meta property="og:title" content="Quiz50">
+    <meta name="keywords" content="quiz50, Quiz 50, quiz test, knowledge test, quiz exam">
+    <meta name="author" content="Mahmud Hasan">
+    <meta name="twitter:description" content="A website designed to challenge your knowledge">
+    <!-- <meta name="twitter:image" content="https:// /imgs/logo_s"> -->
+    <meta property="og:type" content="website">
+    <meta name="description" content="A website to test you knowledge">
+    <!-- <meta property="og:image" content="https:// /imgs/logo_s"> -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Quiz50">
+    <link rel="icon" type="image/png" sizes="490x509" href="{{ url_for('static', filename='imgs/logo_s.png') }}">
+    <link rel="icon" type="image/png" sizes="490x509" href="{{ url_for('static', filename='imgs/logo_s.png') }}" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='imgs/logo_s.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='imgs/logo_s.png') }}">
+    <script src="{{ url_for('static', filename='js/jquery.min.js' ) }}"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+      {% include "_bs-color.css" %}
+      * {
+          border: 0;
+          margin: 0;
+          padding: 0;
+          font-family: 'Belanosima', sans-serif;
+          color: white;
+      }
+      html{
+          scroll-behavior: smooth;
+      }
+      img{
+          user-select: none;
+      }
+      body{
+          background-color: black;
+          color: white;
+      }
+      nav{
+          display: flex;
+          justify-content: space-between;
+          padding: 0.6rem 3rem 0.6rem 2rem;
+          margin-bottom: 1rem;
+          background: linear-gradient(to left, black, darkcyan, rgb(16, 129, 129));
+      }
+      nav .nav-img{
+          width: 6rem;
+          height: 6em;
+      }
+      nav .nav-items{
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+          font-size: 1.2rem;
+      }
+      nav .nav-items a{
+          text-decoration: none;
+          color: whitesmoke;
+      }
+      nav .nav-items .navl:hover{
+          color: blueviolet;
+      }
+      nav .nav-items button{
+          background-color: var(--bs-primary);
+          color: white;
+          border: none;
+          padding: 0.5rem 1rem;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: large;
+      }
+      nav .nav-items button:hover{
+          background-color: var(--bs-secondary);
+      }
+      main{
+          margin: 3rem;
+      }
+
+      .footer {
+        margin-top: 30%;
+        position: relative;
+        bottom: 0;
+        height: 1vh;
+        width: 92.5%;
+        background: #3586ff;
+        min-height: 100px;
+        padding: 20px 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .social-icon,
+      .menu {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0;
+        flex-wrap: wrap;
+      }
+
+      .social-icon__item,
+      .menu__item {
+        list-style: none;
+      }
+
+      .social-icon__link {
+        font-size: 2rem;
+        color: #fff;
+        margin: 0 10px;
+        display: inline-block;
+        transition: 0.5s;
+      }
+      .social-icon__link:hover {
+        transform: translateY(-10px);
+      }
+
+      .menu__link {
+        font-size: 1.2rem;
+        color: #fff;
+        margin: 0 10px;
+        display: inline-block;
+        transition: 0.5s;
+        text-decoration: none;
+        opacity: 0.75;
+        font-weight: 300;
+      }
+
+      .menu__link:hover {
+        opacity: 1;
+      }
+
+      .footer p {
+        color: #fff;
+        margin: 15px 0 10px 0;
+        font-size: 1rem;
+        font-weight: 300;
+      }
+
+      .wave {
+        position: absolute;
+        top: -100px;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: url("{{ url_for('static', filename='imgs/wave.png') }}");
+        background-size: 1000px 100px;
+      }
+
+      .wave#wave1 {
+        z-index: 1000;
+        opacity: 1;
+        bottom: 0;
+        animation: animateWaves 4s linear infinite;
+      }
+
+      .wave#wave2 {
+        z-index: 999;
+        opacity: 0.5;
+        bottom: 10px;
+        animation: animate 4s linear infinite !important;
+      }
+
+      .wave#wave3 {
+        z-index: 1000;
+        opacity: 0.2;
+        bottom: 15px;
+        animation: animateWaves 3s linear infinite;
+      }
+
+      .wave#wave4 {
+        z-index: 999;
+        opacity: 0.7;
+        bottom: 20px;
+        animation: animate 3s linear infinite;
+      }
+
+      @keyframes animateWaves {
+        0% {
+          background-position-x: 1000px;
+        }
+        100% {
+          background-position-x: 0px;
+        }
+      }
+
+      @keyframes animate {
+        0% {
+          background-position-x: -1000px;
+        }
+        100% {
+          background-position-x: 0px;
+        }
+      }
+
+    </style>
+    {% block head %} {% endblock %}
+    <title>{% block title %}{% endblock %}|Quiz50</title>
+  </head>
+  <body>
+    <nav>
+      <a href="{{ url_for('index') }}">
+        <img
+        class="nav-img"
+        src="{{ url_for('static', filename='imgs/logo.png') }}"
+        />
+      </a>
+      <div class="nav-items">
+        {% if current_user.is_authenticated == true %}
+          <a class="navl" href="{{ url_for('index') }}">Home</a>
+          <a class="navl" href="{{ url_for('profile') }}">Profile</a>
+          <a href="{{ url_for('quiz') }}" class="navl">Quiz</a>
+          <a class="navl" href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Login</a>
+          <button><a href="{{ url_for('register') }}">Register</a></button>
+        {% endif %}
+      </div>
+    </nav>
+    <br />
+    {% include "_flash.html" %}
+    <main>
+      {% block body %} {% endblock %}
+    </main>
+    <footer class="footer">
+      <div class="waves">
+        <div class="wave" id="wave1"></div>
+        <div class="wave" id="wave2"></div>
+        <div class="wave" id="wave3"></div>
+        <div class="wave" id="wave4"></div>
+      </div>
+      <ul class="social-icon">
+        <li class="social-icon__item"><a id="facebook" class="social-icon__link" href="#">
+          <svg width="30px" height="30px" style="stroke-width: 2px;" viewBox="0 0 24 24" fill="none"  xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 12C22 6.47714 17.5229 1.99999 12 1.99999C6.47715 1.99999 2 6.47714 2 12C2 16.9913 5.65686 21.1283 10.4375 21.8785V14.8906H7.89844V12H10.4375V9.79687C10.4375 7.29062 11.9304 5.90624 14.2146 5.90624C15.3087 5.90624 16.4531 6.10155 16.4531 6.10155V8.56249H15.1921C13.9499 8.56249 13.5625 9.33333 13.5625 10.1242V12H16.3359L15.8926 14.8906H13.5625V21.8785C18.3431 21.1283 22 16.9913 22 12Z" stroke="#000000" stroke-linejoin="round"/>
+            </svg>
+          </a></li>
+        <li class="social-icon__item"><a id="twitter" class="social-icon__link" href="#">
+          <svg width="30px" height="30px" style="stroke-width: 2px;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 50 50">
+            <path d="M 5.9199219 6 L 20.582031 27.375 L 6.2304688 44 L 9.4101562 44 L 21.986328 29.421875 L 31.986328 44 L 44 44 L 28.681641 21.669922 L 42.199219 6 L 39.029297 6 L 27.275391 19.617188 L 17.933594 6 L 5.9199219 6 z M 9.7167969 8 L 16.880859 8 L 40.203125 42 L 33.039062 42 L 9.7167969 8 z"></path>
+            </svg>
+          </a></li>
+        <li class="social-icon__item"><a id="discord" class="social-icon__link" href="#">
+            <svg width="30px" height="30px" style="stroke-width: 2px;" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.a{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}</style></defs><path class="a" d="M17.54,34.22A47.42,47.42,0,0,1,14.68,38C7.3,37.79,4.5,33,4.5,33A44.83,44.83,0,0,1,9.31,13.48,16.47,16.47,0,0,1,18.69,10l1,2.31"></path><path class="a" d="M17.85,22.67a3.48,3.48,0,0,0-3.37,3.9,3.38,3.38,0,0,0,3.31,3.22,3.53,3.53,0,0,0,3.43-3.9A3.45,3.45,0,0,0,17.85,22.67Z"></path><path class="a" d="M12.2,14.37a28.19,28.19,0,0,1,8.16-2.18A23.26,23.26,0,0,1,24,12a23.26,23.26,0,0,1,3.64.21,28.19,28.19,0,0,1,8.16,2.18m-7.47-2.09,1-2.31a16.47,16.47,0,0,1,9.38,3.51A44.83,44.83,0,0,1,43.5,33S40.7,37.79,33.32,38a47.42,47.42,0,0,1-2.86-3.81m6.46-2.9a29.63,29.63,0,0,1-8.64,3.49,21.25,21.25,0,0,1-4.28.4h0a21.25,21.25,0,0,1-4.28-.4,29.63,29.63,0,0,1-8.64-3.49"></path><path class="a" d="M30.15,22.67a3.48,3.48,0,0,1,3.37,3.9,3.38,3.38,0,0,1-3.31,3.22,3.53,3.53,0,0,1-3.43-3.9A3.45,3.45,0,0,1,30.15,22.67Z"></path></g>
+            </svg>
+          </a></li>
+        <li class="social-icon__item"><a id="instagram" class="social-icon__link" href="#">
+            <svg width="30px" height="30px" style="stroke-width: 2px;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="#0F0F0F"></path> <path d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z" fill="#0F0F0F"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z" fill="#0F0F0F"></path> </g>
+            </svg>
+          </a></li>
+      </ul>
+      <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href="{{ url_for('index') }}">Home</a></li>
+        <li class="menu__item"><a class="menu__link" href="{{ url_for('about') }}">About</a></li>
+        <li class="menu__item"><a class="menu__link" href="{{ url_for('contact') }}">Contact</a></li>
+
+      </ul>
+      <p>&copy;{{ datetime.datetime.now().year }} Quiz50 | All Rights Reserved</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+{% extends '_layout.html' %}
+{% block head %}
+    <style>
+        main {
+            display: grid;
+            grid-template-columns: 30% 70%;
+            grid-template-rows: 1fr;
+            margin: 3rem;
+        }
+        .profile-nav{
+            grid-column: 1/2;
+            grid-row: 1/2;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            border-right: 1px solid var(--bs-primary);
+        }
+        .profile-nav li a{
+            text-decoration: none;
+        }
+        .profile-nav li{
+            padding: 1rem;
+            border-bottom: 1px solid #000;
+            cursor: pointer;
+        }
+        .profile-nav li:hover, .profile-nav li:hover a{
+            background-color: #f0f0f0;
+            color: #000;
+        }
+        .profile-nav li.current{
+            background-color: var(--bs-primary);
+        }
+        .subcont{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .subcont form{
+            display: grid;
+            gap: 1rem;
+        }
+        .subcont form label{
+            font-weight: bold;
+        }
+        .subcont form input{
+            padding: 0.5rem;
+            color: black;
+            border: 1px solid #000;
+            border-radius: 0.5rem;
+        }
+        .subcont form #submit, .subcont form .location-btn{
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: var(--bs-primary);
+            color: #fff;
+            cursor: pointer;
+        }
+        .subcont form #address{
+            color: black;
+            padding: 1rem;
+            border: 1px solid #000;
+            border-radius: 0.5rem;
+        }
+    </style>
+{% endblock %}
+{% block title %}{{ current_user.username }}{% endblock %}
+{% block body %}
+    <ul class="profile-nav">
+        <li onclick="document.getElementById('overview').click()"><a id="overview" href="{{ url_for('profile') }}">Overview</a></li>
+        <li class="current">Edit Profile</li>
+    </ul>
+    <div class="subcont">
+        <form action="{{ url_for('edit_profile') }}" method="post">
+            <h1>Edit Profile</h1>
+            {{ form.hidden_tag() }}
+            <label for="username">Username</label>
+            {{ form.username(value=current_user.username) }}
+            <label for="password">New Password</label>
+            {{ form.password(class='frm-input', oninput='check()') }}
+            <label for="confirmation">Confirmation</label>
+            {{ form.confirmation(class='frm-input', oninput='check()') }}
+            {{ form.submit() }}
+        </form>
+    </div>
+    <script>
+        function check() {
+            let pass1=document.getElementById("password");
+            if (pass1.value.length>0){
+                if (pass1.value!=document.getElementById("confirmation").value){
+                    pass1.setCustomValidity('Password Must be Matching.');
+                } else if (pass1.value.length<8){
+                    pass1.setCustomValidity("Password Must be 8 character long");
+                } else {
+                    pass1.setCustomValidity('');
+                }
+            }
+            else {
+                pass1.setCustomValidity('');
+            }
+        }
+    </script>
+{% endblock %}

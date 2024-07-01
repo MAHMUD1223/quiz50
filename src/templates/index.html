@@ -1,0 +1,39 @@
+{% extends '_layout.html' %}
+{% block head %}
+    <style>
+        table{
+            width: 100%;
+            margin: 1rem;
+        }
+        table tr:nth-child(even){
+            background-color: var(--bs-primary);
+        }
+        table tr:nth-child(odd){
+            background-color: var(--bs-secondary);
+        }
+    </style>
+{% endblock %}
+{% block title %}Home{% endblock %}
+{% block body %}
+    <h1>Welcome to Quiz50</h1>
+    <p>Quiz50 is a quiz playground where you can play and create quizzes. <a href="{{ url_for('about') }}">Learn more</a></p>
+    <table>
+        <caption>Current Quiz ranking</caption>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr align="center" id="r{{ loop.index }}">
+                    <td>{{ loop.index }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.point }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
